@@ -1,67 +1,55 @@
 # Library Management System
-# Author: [Your Name]
-# Roll Number: [Your Roll Number]
-# Email: [Your Email Address]
+# Author: Muhammad Maaz
+# Roll Number: 
+# Email: hafeezmaaz43@gmail.com
 
-class Library:
-    def __init__(self):
-        self.books = []
+# Problem Statement:
+# Create a simple library management system that allows users to add, remove, and search for books in the library.
 
-    def add_book(self, book):
-        self.books.append(book)
-        print("Book added successfully!")
+# Function to add a book to the library
+def add_book(library, book):
+    library.append(book)
+    print(f"Book '{book}' added to the library.")
 
-    def display_books(self):
-        if self.books:
-            print("Available Books:")
-            for book in self.books:
-                print(book)
-        else:
-            print("No books available in the library.")
+# Function to remove a book from the library
+def remove_book(library, book):
+    if book in library:
+        library.remove(book)
+        print(f"Book '{book}' removed from the library.")
+    else:
+        print(f"Book '{book}' not found in the library.")
 
-    def search_book(self, title):
-        found = False
-        for book in self.books:
-            if title.lower() in book.title.lower():
-                print("Book found:")
-                print(book)
-                found = True
-                break
-        if not found:
-            print("Book not found.")
+# Function to search for a book in the library
+def search_book(library, book):
+    if book in library:
+        print(f"Book '{book}' found in the library.")
+    else:
+        print(f"Book '{book}' not found in the library.")
 
-class Book:
-    def __init__(self, title, author, genre):
-        self.title = title
-        self.author = author
-        self.genre = genre
-
-    def __str__(self):
-        return f"Title: {self.title}, Author: {self.author}, Genre: {self.genre}"
-
+# Main function
 def main():
-    library = Library()
+    library = []  # Initialize an empty list to store books
 
+    # Menu for the library management system
     while True:
-        print("\n1. Add Book")
-        print("2. Display Books")
+        print("\nLibrary Management System")
+        print("1. Add Book")
+        print("2. Remove Book")
         print("3. Search Book")
         print("4. Exit")
         choice = input("Enter your choice: ")
 
-        if choice == '1':
-            title = input("Enter title: ")
-            author = input("Enter author: ")
-            genre = input("Enter genre: ")
-            book = Book(title, author, genre)
-            library.add_book(book)
-        elif choice == '2':
-            library.display_books()
-        elif choice == '3':
-            title = input("Enter title to search: ")
-            library.search_book(title)
-        elif choice == '4':
-            print("Exiting...")
+        if choice == "1":
+            book = input("Enter the name of the book to add: ")
+            add_book(library, book)
+        elif choice == "2":
+            book = input("Enter the name of the book to remove: ")
+            remove_book(library, book)
+        elif choice == "3":
+            book = input("Enter the name of the book to search: ")
+            search_book(library, book)
+        elif choice == "4":
+            print("Exiting the library management system.")
             break
         else:
             print("Invalid choice. Please enter a valid option.")
